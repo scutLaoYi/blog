@@ -1,0 +1,12 @@
+/Config/
+/Lib/
+/Test/
+/Vendor/
+/webroot/
+/Console/
+/Locale/
+/Plugin/
+/tmp/
+
+index.php
+.htaccess
