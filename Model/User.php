@@ -1,32 +1,9 @@
 <?php
-/*
-class User extends AppModel
-{
-	public $validate = array(
-			'username' => array(
-				'required' => array(
-					'rule' => array('notEmpty'),
-					'message' => 'A username is needed'
-					)
-				),
-			'password' => array(
-				'required' => array(
-					'rule' => array('notEmpty'),
-					'message' => 'A password is needed'
-					)
-				),
-			'role' => array(
-				'valid' => array(
-					'rule' => array('inList',array('admin','author')),
-					'message' => 'szy fuck you!',
-					'allowEmpty' => false
-					)
-				)
-				);
-}
-*/
+
+App::uses('AuthComponent','Controller/Component');
 
 class User extends AppModel {
+
     public $validate = array(
         'username' => array(
             'required' => array(
@@ -48,7 +25,17 @@ class User extends AppModel {
             )
         )
     );
+
+    public function beforeSave($options = array())
+    {
+	    if(isset($this->data[$this->alias]['password']))
+	    {
+		    $this->data[$this->alias]['password'] = AuthComponent::password($this->data[$this->alias]['password']);
+	    }
+	    return true;
+    }
 }
+
 ?>
 
 
