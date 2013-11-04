@@ -13,7 +13,10 @@
 		</dd>
 		<dt><?php echo __('Body'); ?></dt>
 		<dd>
-			<?php echo h($post['Post']['body']); ?>
+			<?php 
+				$message = ereg_replace("\n", "<BR>\n", $post['Post']['body']);
+				echo "<p>$message</p>";
+				//echo h($post['Post']['body']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Created'); ?></dt>
