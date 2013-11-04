@@ -8,5 +8,6 @@
 /Plugin/
 /tmp/
 
+*.php~
 index.php
 .htaccess
