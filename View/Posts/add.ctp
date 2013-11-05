@@ -1,18 +1,18 @@
 <div class="posts form">
 <?php echo $this->Form->create('Post'); ?>
 	<fieldset>
-		<legend><?php echo __('Add Post'); ?></legend>
+		<legend><?php echo __('写新的博客'); ?></legend>
 	<?php
-		echo $this->Form->input('title');
-		echo $this->Form->input('body');
+		echo $this->Form->input('标题');
+		echo $this->Form->input('正文');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(__('提交')); ?>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
+	<h3><?php echo __('操作'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Posts'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('返回博客列表'), array('action' => 'index')); ?></li>
 	</ul>
 </div>

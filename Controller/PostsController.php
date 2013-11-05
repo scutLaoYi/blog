@@ -25,6 +25,20 @@ class PostsController extends AppController {
 		$this->set('posts', $this->Paginator->paginate());
 	}
 
+	public function list_all()
+	{
+		$this->Post->recursive = 0;
+		$this->set('posts', $this->Paginator->paginate());
+	}
+
+	public function my_posts()
+	{
+		//$options = array('conditions' => array('Post.user_id =' => $this->Auth->user('id')));
+		//$this->set('posts', $this->Post->find('all', $options));
+		$data = $this->Paginator->paginate('Post', array('Post.user_id' => $this->Auth->user('id')));
+		$this->set('posts', $data);
+	}
+
 /**
  * view method
  *
