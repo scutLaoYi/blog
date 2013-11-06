@@ -17,8 +17,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = __d('cake_dev', 'login');
-$logoutLink = __d('logout', 'index');
+$cakeDescription = __d('cake_dev', 'ndsc blog');
 
 ?>
 <!DOCTYPE html>
@@ -42,13 +41,26 @@ $logoutLink = __d('logout', 'index');
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'login'); ?></h1>
-			<h1><?php echo $this->Html->link($logoutLink,'index'); ?> </h1>
+			<h1><?php echo $this->Html->link($cakeDescription, array('controller'=>'Posts','action'=>'index')); ?></h1>
 		</div>
 		<div id="content">
-
+			<div id="menu">
+				<?php
+				if($this->Session->check('user'))
+				{
+					echo $this->Session->read('user');
+					echo " ";
+					echo $this->Html->link('logout',array('controller' => 'Users','action' => 'logout'));
+				}
+				else
+				{
+					echo $this->Html->link('login',array('controller' => 'Users', 'action'=>'login'));
+					echo " ";
+					echo $this->Html->link('register',array('controller'=>'Users','action'=>'add'));
+				}
+				?>
+			</div>
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
