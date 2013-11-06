@@ -1,8 +1,5 @@
 <div class="users index">
 	<h2><?php echo __('Users'); ?></h2>
-	<?php 
-		if($logined){echo $this->element('check');}
-		else echo $this->element('helpbox'); ?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
