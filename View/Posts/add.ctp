@@ -3,8 +3,8 @@
 	<fieldset>
 		<legend><?php echo __('写新的博客'); ?></legend>
 	<?php
-		echo $this->Form->input('标题');
-		echo $this->Form->input('正文');
+		echo $this->Form->input('title', array('label' => '标题'));
+		echo $this->Form->input('body', array('label' => '正文'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('提交')); ?>

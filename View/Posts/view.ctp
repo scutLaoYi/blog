@@ -4,3 +4,15 @@
 $message = ereg_replace("\n", "<BR>\n", $post['Post']['body']);
 echo "<p>$message</p>";
 ?>
+<p>---------------------------------------------------------------</p>
+<p>评论列表：</p>
+<?php
+foreach ($commets as $commet):
+?>
+<p><?php 
+echo '用户'.$commet['Commet']['user_id'] . ':';
+echo $commet['Commet']['content'];?></p>
+<?php
+endforeach;
+?>
+<?php echo $this->Html->link('添加评论', array('controller'=>'commets', 'action'=>'add', $user, $post['Post']['id'])); ?>

@@ -14,6 +14,7 @@ class PostsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	public $uses = array('Post', 'Commet');
 
 /**
  * index method
@@ -52,6 +53,9 @@ class PostsController extends AppController {
 		}
 		$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
 		$this->set('post', $this->Post->find('first', $options));
+		$commetOpt = array('conditions' => array('Commet.post_id' => $id));
+		$this->set('commets', $this->Commet->find('all', $commetOpt));
+		$this->set('user', $this->Auth->user('id'));
 	}
 
 /**
