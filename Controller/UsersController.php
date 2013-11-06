@@ -38,9 +38,15 @@ class UsersController extends AppController {
 	{
 		if($this->request->is('post'))
 		{
+			if($this->Auth->user('id'))
+			{
+				$this->Session->setFlash(__('The user could not log in. Please, try again.'));
+				return $this->redirect(array('action' => 'index'));
+			}
 			if($this->Auth->login())
 			{
-				return $this->redirect($this->Auth->redirect());
+				//return $this->redirect($this->Auth->redirect());
+				return $this->redirect(array('action' => 'index'));
 			}
 			$this->Session->setFlash(__('Invalid username or password,szy fucks you.'));
 		}
@@ -54,6 +60,8 @@ class UsersController extends AppController {
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+		$this->set('logined',$this->Auth->user('username'));
+		$this->pageTitle = "login and register";
 	}
 
 /**

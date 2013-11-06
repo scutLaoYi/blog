@@ -50,6 +50,7 @@ $logoutLink = __d('logout', 'index');
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
+			<?php echo $logined; ?>
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->link(

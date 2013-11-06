@@ -1,7 +1,7 @@
 <div class="users index">
 	<h2><?php echo __('Users'); ?></h2>
 	<?php 
-		if($logined){echo $this->element('check');}
+		if($this->Auth->user('username')){echo $this->element('check');}
 		else echo $this->element('helpbox'); ?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>

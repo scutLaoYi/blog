@@ -1,0 +1,6 @@
+<div class="actions">
+	<h3><?php echo __('Actions'); ?></h3>
+	<ul>
+		<li><?php echo $this->Html->link(__('you have log in'), array('action' => 'logout')); ?></li>
+	</ul>
+</div>
