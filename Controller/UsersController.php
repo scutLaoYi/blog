@@ -40,8 +40,8 @@ class UsersController extends AppController {
 		{
 			if($this->Auth->user('id'))
 			{
-				$this->Session->setFlash(__('The user could not log in. Please, try again.'));
-				return $this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('You have been logined,you have no need to do that again.'));
+				return $this->redirect(array('controller' => 'Posts','action' => 'index'));
 			}
 			if($this->Auth->login())
 			{
@@ -49,14 +49,16 @@ class UsersController extends AppController {
 				$this->Session->write('user',$this->data['User']['username']);
 				return $this->redirect(array('controller' => 'Posts','action' => 'index'));
 			}
-			$this->Session->setFlash(__('Invalid username or password,szy fucks you.'));
+			$this->Session->setFlash(__('Invalid username or password,please try again.'));
 		}
 	}
 
 	public function logout()
 	{
 		$this->Session->delete('user');
-		return $this->redirect($this->Auth->logout());
+		$this->Auth->logout();
+		return $this->redirect(array('controller' => 'Posts','action' => 'index'));
+	//	return $this->redirect($this->Auth->logout());
 	}
 
 	public function index() {
