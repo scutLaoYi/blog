@@ -1,0 +1,462 @@
+2013-11-04 16:27:18 Error: Fatal Error (4): syntax error, unexpected ';', expecting T_FUNCTION in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 38]
+2013-11-04 16:27:18 Error: [FatalErrorException] syntax error, unexpected ';', expecting T_FUNCTION
+Request URL: /html/cake_blog/posts/add
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-04 16:29:24 Error: [MissingActionException] Action PostsController::list() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'list',
+)
+Request URL: /html/cake_blog/posts/list
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-11-04 16:29:29 Error: [NotFoundException] 该博客不存在
+Request URL: /html/cake_blog/posts/view/1
+Stack Trace:
+#0 [internal function]: PostsController->view('1')
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#4 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2013-11-04 20:53:53 Error: Fatal Error (4): syntax error, unexpected '/', expecting '(' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 110]
+2013-11-04 20:53:53 Error: [FatalErrorException] syntax error, unexpected '/', expecting '('
+Request URL: /html/cake_blog/posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 110)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 110, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 110, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-04 20:54:09 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/post_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:57:16 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/post_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:57:23 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:57:31 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/post
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:57:33 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:57:40 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/post_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:57:44 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/posts_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:59:17 Error: [MissingControllerException] Controller class LocalhostController could not be found.
+Exception Attributes: array (
+  'class' => 'LocalhostController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/localhost/admin/post_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:59:33 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog//admin/post_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:59:35 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/post_controller
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:59:45 Error: [MissingControllerException] Controller class AdminController could not be found.
+Exception Attributes: array (
+  'class' => 'AdminController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/admin/post_controller_add
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 20:59:50 Error: [MissingControllerException] Controller class LocalhostController could not be found.
+Exception Attributes: array (
+  'class' => 'LocalhostController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/localhost/admin/post_controller_add
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 21:02:06 Error: [MissingControllerException] Controller class PostController could not be found.
+Exception Attributes: array (
+  'class' => 'PostController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/post
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-04 21:02:14 Error: Fatal Error (4): syntax error, unexpected '/', expecting '(' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 110]
+2013-11-04 21:02:14 Error: [FatalErrorException] syntax error, unexpected '/', expecting '('
+Request URL: /html/cake_blog/posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 110)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 110, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 110, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-05 14:33:01 Error: [MissingControllerException] Controller class PostController could not be found.
+Exception Attributes: array (
+  'class' => 'PostController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/post
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-05 14:34:22 Error: [MissingControllerException] Controller class BlogsController could not be found.
+Exception Attributes: array (
+  'class' => 'BlogsController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/blogs
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-05 14:55:30 Error: Fatal Error (4): syntax error, unexpected T_LIST, expecting T_STRING in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 28]
+2013-11-05 14:55:30 Error: [FatalErrorException] syntax error, unexpected T_LIST, expecting T_STRING
+Request URL: /html/cake_blog/posts/list
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 28)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 28, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 28, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-05 14:56:28 Error: [MissingActionException] Action PostsController::list_post() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'list_post',
+)
+Request URL: /html/cake_blog/posts/list_post
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-11-05 14:56:28 Error: [MissingActionException] Action PostsController::list_post() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'list_post',
+)
+Request URL: /html/cake_blog/posts/list_post
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-11-05 14:57:47 Error: [MissingActionException] Action PostsController::all_a() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'all_a',
+)
+Request URL: /html/cake_blog/posts/all_a
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-11-05 14:57:47 Error: [MissingActionException] Action PostsController::all_a() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'all_a',
+)
+Request URL: /html/cake_blog/posts/all_a
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-11-05 15:11:51 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'findall' at line 1
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('findall', Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(666): DboSource->execute('findall', Array, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(611): DboSource->fetchAll('findall', Array, Array)
+#4 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Model.php(801): DboSource->query('findall', Array, Object(Post))
+#5 /home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php(37): Model->__call('findall', Array)
+#6 /home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php(37): Post->findall(Array)
+#7 [internal function]: PostsController->my_posts()
+#8 /home/shengwu003/www/html/cake_blog/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#9 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#10 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2013-11-05 15:11:51 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'findall' at line 1
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('findall', Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(666): DboSource->execute('findall', Array, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(611): DboSource->fetchAll('findall', Array, Array)
+#4 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Model.php(801): DboSource->query('findall', Array, Object(Post))
+#5 /home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php(37): Model->__call('findall', Array)
+#6 /home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php(37): Post->findall(Array)
+#7 [internal function]: PostsController->my_posts()
+#8 /home/shengwu003/www/html/cake_blog/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#9 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#10 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2013-11-05 15:12:45 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.14' at line 1
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(460): PDOStatement->execute(Array)
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(426): DboSource->_execute('SELECT `Post`.`...', Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(666): DboSource->execute('SELECT `Post`.`...', Array, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Datasource/DboSource.php(1077): DboSource->fetchAll('SELECT `Post`.`...', false)
+#4 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Model.php(2880): DboSource->read(Object(Post), Array)
+#5 /home/shengwu003/www/html/cake_blog/lib/Cake/Model/Model.php(2852): Model->_readDataSource('all', Array)
+#6 /home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php(37): Model->find('all', Array)
+#7 [internal function]: PostsController->my_posts()
+#8 /home/shengwu003/www/html/cake_blog/lib/Cake/Controller/Controller.php(490): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#9 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#10 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#11 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2013-11-05 15:31:22 Error: Fatal Error (4): syntax error, unexpected T_OBJECT_OPERATOR, expecting ')' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 38]
+2013-11-05 15:31:22 Error: [FatalErrorException] syntax error, unexpected T_OBJECT_OPERATOR, expecting ')'
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-05 15:32:44 Error: Fatal Error (4): syntax error, unexpected T_OBJECT_OPERATOR, expecting ')' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 38]
+2013-11-05 15:32:44 Error: [FatalErrorException] syntax error, unexpected T_OBJECT_OPERATOR, expecting ')'
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-05 15:32:45 Error: Fatal Error (4): syntax error, unexpected T_OBJECT_OPERATOR, expecting ')' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 38]
+2013-11-05 15:32:45 Error: [FatalErrorException] syntax error, unexpected T_OBJECT_OPERATOR, expecting ')'
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 38)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 38, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-05 15:35:59 Error: Fatal Error (4): syntax error, unexpected T_OBJECT_OPERATOR, expecting ')' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 39]
+2013-11-05 15:35:59 Error: [FatalErrorException] syntax error, unexpected T_OBJECT_OPERATOR, expecting ')'
+Request URL: /html/cake_blog/posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 39)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 39, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 39, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-05 15:48:42 Error: [MissingControllerException] Controller class BlogsController could not be found.
+Exception Attributes: array (
+  'class' => 'BlogsController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/blogs
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-05 15:49:54 Error: [MissingControllerException] Controller class MyBlogsController could not be found.
+Exception Attributes: array (
+  'class' => 'MyBlogsController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/my_blogs
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-05 15:49:58 Error: [MissingControllerException] Controller class MyPostsController could not be found.
+Exception Attributes: array (
+  'class' => 'MyPostsController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-06 15:24:19 Error: [MissingControllerException] Controller class CommentController could not be found.
+Exception Attributes: array (
+  'class' => 'CommentController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/comment
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-06 15:24:24 Error: [MissingControllerException] Controller class CommentsController could not be found.
+Exception Attributes: array (
+  'class' => 'CommentsController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/comments
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-06 16:05:04 Error: [MissingActionException] Action CommetsController::login() could not be found.
+Exception Attributes: array (
+  'controller' => 'CommetsController',
+  'action' => 'login',
+)
+Request URL: /html/cake_blog/commets/login
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(CommetsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2013-11-06 16:09:04 Error: Fatal Error (4): syntax error, unexpected ';' in [/home/shengwu003/www/html/cake_blog/app/Controller/PostsController.php, line 57]
+2013-11-06 16:09:04 Error: [FatalErrorException] syntax error, unexpected ';'
+Request URL: /html/cake_blog/posts/view/1
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 57)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 57, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 57, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-06 16:12:19 Error: Fatal Error (4): syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in [/home/shengwu003/www/html/cake_blog/app/View/Posts/view.ctp, line 7]
+2013-11-06 16:12:19 Error: [FatalErrorException] syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING
+Request URL: /html/cake_blog/posts/view/1
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 7)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 7, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 7, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-06 16:14:27 Error: Fatal Error (4): syntax error, unexpected '<' in [/home/shengwu003/www/html/cake_blog/app/View/Posts/view.ctp, line 7]
+2013-11-06 16:14:27 Error: [FatalErrorException] syntax error, unexpected '<'
+Request URL: /html/cake_blog/posts/view/1
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 7)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 7, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 7, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-06 16:25:01 Error: [MissingControllerException] Controller class CommetController could not be found.
+Exception Attributes: array (
+  'class' => 'CommetController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/commet/add
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-06 16:25:16 Error: [MissingControllerException] Controller class CommetController could not be found.
+Exception Attributes: array (
+  'class' => 'CommetController',
+  'plugin' => NULL,
+)
+Request URL: /html/cake_blog/commet
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-11-06 16:43:31 Error: Fatal Error (4): syntax error, unexpected ',', expecting '&' or T_VARIABLE in [/home/shengwu003/www/html/cake_blog/app/Controller/CommetsController.php, line 48]
+2013-11-06 16:43:31 Error: [FatalErrorException] syntax error, unexpected ',', expecting '&' or T_VARIABLE
+Request URL: /html/cake_blog/commets/add/user_id:15/post_id:1
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(4, 'syntax error, u...', '/home/shengwu00...', 48)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', '/home/shengwu00...', 48, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', '/home/shengwu00...', 48, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-06 16:48:24 Error: Fatal Error (1): Cannot use object of type Commet as array in [/home/shengwu003/www/html/cake_blog/app/Controller/CommetsController.php, line 51]
+2013-11-06 16:48:24 Error: [FatalErrorException] Cannot use object of type Commet as array
+Request URL: /html/cake_blog/commets/add/15/1
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Error/ErrorHandler.php(205): ErrorHandler::handleFatalError(1, 'Cannot use obje...', '/home/shengwu00...', 51)
+#1 [internal function]: ErrorHandler::handleError(1, 'Cannot use obje...', '/home/shengwu00...', 51, Array)
+#2 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Cannot use obje...', '/home/shengwu00...', 51, Array)
+#3 /home/shengwu003/www/html/cake_blog/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-11-07 15:07:28 Error: [MissingActionException] Action PostsController::my_posts() could not be found.
+Exception Attributes: array (
+  'controller' => 'PostsController',
+  'action' => 'my_posts',
+)
+Request URL: /html/cake_blog/Posts/my_posts
+Stack Trace:
+#0 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/shengwu003/www/html/cake_blog/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/shengwu003/www/html/cake_blog/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
