@@ -5,6 +5,7 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('post_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('content'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -13,6 +14,7 @@
 		<td><?php echo h($commet['Commet']['id']); ?>&nbsp;</td>
 		<td><?php echo h($commet['Commet']['user_id']); ?>&nbsp;</td>
 		<td><?php echo h($commet['Commet']['post_id']); ?>&nbsp;</td>
+		<td><?php echo h($commet['Commet']['user_name']); ?>&nbsp; </td>
 		<td><?php echo h($commet['Commet']['content']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $commet['Commet']['id'])); ?>

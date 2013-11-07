@@ -26,18 +26,23 @@ class PostsController extends AppController {
 		$this->set('posts', $this->Paginator->paginate());
 	}
 
-	public function list_all()
+/*	public function list_all()
 	{
 		$this->Post->recursive = 0;
 		$this->set('posts', $this->Paginator->paginate());
 	}
+ */
 
-	public function my_posts()
+	public function user_posts($user_id = null)
 	{
-		//$options = array('conditions' => array('Post.user_id =' => $this->Auth->user('id')));
-		//$this->set('posts', $this->Post->find('all', $options));
-		$data = $this->Paginator->paginate('Post', array('Post.user_id' => $this->Auth->user('id')));
+		if(!$user_id)
+		{
+			$user_id = $this->Auth->user('id');
+		}
+		$data = $this->Paginator->paginate('Post', array('Post.user_id' => $user_id));
 		$this->set('posts', $data);
+		$this->set('is_current_user', $this->Auth->user('role') === 'admin' || $this->Auth->user('id') == $user_id);
+		$this->set('posts_owner', $user_id);
 	}
 
 /**
@@ -52,10 +57,11 @@ class PostsController extends AppController {
 			throw new NotFoundException(__('Invalid post'));
 		}
 		$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
-		$this->set('post', $this->Post->find('first', $options));
+		$currentPost = $this->Post->find('first', $options);
+		$this->set('post', $currentPost);
 		$commetOpt = array('conditions' => array('Commet.post_id' => $id));
 		$this->set('commets', $this->Commet->find('all', $commetOpt));
-		$this->set('user', $this->Auth->user('id'));
+
 	}
 
 /**
@@ -124,7 +130,7 @@ class PostsController extends AppController {
 
 	public function isAuthorized($user)
 	{
-		if($this->action === 'add')
+		if(in_array($this->action, array('add', 'user_posts')))
 		{
 			return true;
 		}

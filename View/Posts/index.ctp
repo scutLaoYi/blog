@@ -3,10 +3,12 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
+			<th>作者</th>
 	</tr>
 	<?php foreach ($posts as $post): ?>
 	<tr>
 		<td><?php echo $this->Html->link(__($post['Post']['title']), array('action' => 'view', $post['Post']['id'])); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link(__('只看该作者'), array('action'=>'user_posts', $post['Post']['user_id'])); ?> &nbsp; </td>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -29,6 +31,6 @@
 	<h3><?php echo __('操作'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('写博客'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('我的博客'), array('action' => 'my_posts')) ?></li>
+		<li><?php echo $this->Html->link(__('我的博客'), array('action' => 'user_posts')) ?></li>
 	</ul>
 </div>

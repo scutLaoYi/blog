@@ -45,11 +45,12 @@ class CommetsController extends AppController {
  *
  * @return void
  */
-	public function add($user_id, $post_id) {
+	public function add($post_id) {
 		if ($this->request->is('post')) {
 			$this->Commet->create();
-			$this->request->data['Commet']['user_id']= $user_id;
+			$this->request->data['Commet']['user_id']= $this->Auth->user('id');
 			$this->request->data['Commet']['post_id'] = $post_id;
+			$this->request->data['Commet']['user_name'] = $this->Auth->user('username');
 			if ($this->Commet->save($this->request->data)) {
 				$this->Session->setFlash(__('The commet has been saved.'));
 				return $this->redirect(array('controller'=>'Posts','action' => 'view', $post_id));
@@ -102,4 +103,15 @@ class CommetsController extends AppController {
 			$this->Session->setFlash(__('The commet could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+
+	//Authorize function : only login user can post a comment.
+	public function isAuthorized($user)
+	{
+		if(in_array($this->action, array('add')))
+		{
+			return true;
+		}
+		return parent::isAuthorized($user);
+	}
+}
