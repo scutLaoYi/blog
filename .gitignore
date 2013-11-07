@@ -8,5 +8,5 @@
 /tmp/
 
 *.php~
-index.php
 .htaccess
+index.php
