@@ -32,6 +32,11 @@
 			&nbsp;
 		</dd>
 	</dl>
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('关注博主'),array('controller'=>'Follows','action' => 'add',$user['User']['id'],$user['User']['username'])); ?></li>
+		</ul>
+	</div>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

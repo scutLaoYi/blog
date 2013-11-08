@@ -45,12 +45,15 @@ class FollowsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($following_id = null,$following_name = null) {
 		if ($this->request->is('post')) {
 			$this->Follow->create();
+			$this->request->data['Follow']['following_id'] = $following_id;
+			$this->request->data['Follow']['follower_id'] = $this->Auth->user('id');
+			$this->request->data['Follow']['following_name'] = $following_name;
 			if ($this->Follow->save($this->request->data)) {
 				$this->Session->setFlash(__('The follow has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'Users','action' => 'view',$following_id));
 			} else {
 				$this->Session->setFlash(__('The follow could not be saved. Please, try again.'));
 			}
