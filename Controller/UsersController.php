@@ -22,6 +22,7 @@ class UsersController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	public $uses = array('User','Follow');
 
 /**
  * index method
@@ -80,6 +81,10 @@ class UsersController extends AppController {
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+
+		$optionsFollow = array('conditions' => array('Follow.follower_id' => $id));
+		$this->set('pa',$this->Paginator->paginate());
+		$this->set('follows', $this->Follow->find('all',$optionsFollow));
 	}
 
 /**

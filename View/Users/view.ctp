@@ -34,9 +34,25 @@
 	</dl>
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('关注博主'),array('controller'=>'Follows','action' => 'add',$user['User']['id'],$user['User']['username'])); ?></li>
+			<li><?php echo $this->Html->link(__('关注博主'),array('controller'=>'Follows','action' => 'add',$user['User']['id'],$user['User']['username'])); ?> </li>
 		</ul>
 	</div>
+	
+	<table cellpadding ="0" cellspacing="0">
+	<tr>
+		<th><?php echo $this->Paginator->sort('following_name'); ?></th>
+		<th class="actions"><<?php echo __('Actions'); ?></th>
+	</tr>
+	<?php foreach ($follows as $follow): ?>
+	<tr>
+		<td><?php echo h($follow['Follow']['following_name']); ?>&nbsp;</td>
+		<td class="actions">
+			<?php echo $this->Html->link(__('取消关注'),array('controller'=>'Follows','action'=>'delete',$follow['Follow']['id']),null,__('Are you sure?')); ?>
+		</td>
+	</tr>
+	<?php endforeach; ?>
+	</table>
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>

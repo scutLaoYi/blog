@@ -96,11 +96,11 @@ class FollowsController extends AppController {
 		if (!$this->Follow->exists()) {
 			throw new NotFoundException(__('Invalid follow'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+	//	$this->request->onlyAllow('post', 'delete');
 		if ($this->Follow->delete()) {
 			$this->Session->setFlash(__('The follow has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The follow could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('controller'=>'Users','action' => 'view',$this->Auth->user('id')));
 	}}
