@@ -12,5 +12,5 @@ class Commet extends AppModel {
  * @var string
  */
 	public $displayField = 'content';
-
+	public $belongsTo='Post';
 }

@@ -14,7 +14,7 @@ class PostsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-	public $uses = array('Post', 'Commet');
+	public $uses = array('Post', 'Commet','User');
 
 /**
  * index method
@@ -22,8 +22,8 @@ class PostsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->Post->recursive = 0;
-		$this->set('posts', $this->Paginator->paginate());
+		$this->Post->recursive = 1;
+		$this->set('posts',$this->Paginator->paginate('Post'));
 	}
 
 /*	public function list_all()
@@ -42,7 +42,11 @@ class PostsController extends AppController {
 		$data = $this->Paginator->paginate('Post', array('Post.user_id' => $user_id));
 		$this->set('posts', $data);
 		$this->set('is_current_user', $this->Auth->user('role') === 'admin' || $this->Auth->user('id') == $user_id);
-		$this->set('posts_owner', $user_id);
+		$this->set('posts_owner', $this->User->find('first',array(
+			'conditions'=>array('User.id'=>$user_id),
+			'filed'=>array('User.username'),
+		
+		)));
 	}
 
 /**
@@ -61,7 +65,12 @@ class PostsController extends AppController {
 		$this->set('post', $currentPost);
 		$commetOpt = array('conditions' => array('Commet.post_id' => $id));
 		$this->set('commets', $this->Commet->find('all', $commetOpt));
-
+		$user_id=$currentPost['Post']['user_id'];
+		$authod = $this->User->find('first',array(
+			'fileds'=>array('username'),
+			'conditions'=>array('User.id'=>$user_id)
+		));
+		$this->set('authod',$authod);
 	}
 
 /**

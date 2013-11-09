@@ -1,5 +1,5 @@
 <div class="posts index">
-	<h2><?php echo __('用户'.$posts_owner.'的博客'); ?></h2>
+	<h2><?php echo __($posts_owner['User']['username'].'的博客'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
