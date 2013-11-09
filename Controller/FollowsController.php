@@ -45,12 +45,15 @@ class FollowsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($following_id = null,$following_name = null) {
 		if ($this->request->is('post')) {
 			$this->Follow->create();
+			$this->request->data['Follow']['following_id'] = $following_id;
+			$this->request->data['Follow']['follower_id'] = $this->Auth->user('id');
+			$this->request->data['Follow']['following_name'] = $following_name;
 			if ($this->Follow->save($this->request->data)) {
 				$this->Session->setFlash(__('The follow has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller' => 'Users','action' => 'view',$following_id));
 			} else {
 				$this->Session->setFlash(__('The follow could not be saved. Please, try again.'));
 			}
@@ -93,11 +96,11 @@ class FollowsController extends AppController {
 		if (!$this->Follow->exists()) {
 			throw new NotFoundException(__('Invalid follow'));
 		}
-		$this->request->onlyAllow('post', 'delete');
+	//	$this->request->onlyAllow('post', 'delete');
 		if ($this->Follow->delete()) {
 			$this->Session->setFlash(__('The follow has been deleted.'));
 		} else {
 			$this->Session->setFlash(__('The follow could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		return $this->redirect(array('controller'=>'Users','action' => 'view',$this->Auth->user('id')));
 	}}
