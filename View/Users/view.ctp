@@ -54,12 +54,14 @@
 	</table>
 
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
-	</ul>
+<div class="action">
+	<h3><?php echo __('头像'); ?></h3>
+		<?php 
+			echo $this->Html->image('../head_image/'.$user['User']['image'], array('width' => '300', 'height'=>'300'));
+		?>
+		<?php
+			echo $this->Form->create('Head', array('type'=>'file'));
+			echo $this->Form->input('head_image', array('type'=>'file'));
+			echo $this->Form->end('提交新头像');
+		?>
 </div>

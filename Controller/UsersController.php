@@ -80,11 +80,46 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+		//changed by laoyi. get the current User, used in the following code.
+		$currentUser = $this->User->find('first', $options);
+		$this->set('user', $currentUser);
 
 		$optionsFollow = array('conditions' => array('Follow.follower_id' => $id));
 		$this->set('pa',$this->Paginator->paginate());
 		$this->set('follows', $this->Follow->find('all',$optionsFollow));
+
+		//----------------------------------------
+		//by laoyi: adding the function to save and display image.
+
+		if(!empty($currentUser['User']['image']))
+		{
+			$this->set('image', $currentUser['User']['image']);
+		}
+		if($this->request->is('post'))
+		{
+			if(!empty($this->request->data))
+			{
+				$file = $this->data['Head']['head_image'];
+
+				$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+				$arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+
+				if(in_array($ext, $arr_ext))
+				{
+					move_uploaded_file($file['tmp_name'], WWW_ROOT.'head_image/'.$file['name']);
+					$currentUser['User']['image'] = $file['name'];
+				}
+			}
+			if($this->User->save($currentUser))
+			{
+				$this->Session->setFlash('头像上传成功！');
+				$this->redirect($this->referer());
+			}
+			else
+			{
+				$this->Session->setFlash('头像上传失败...');
+			}
+		}
 	}
 
 /**
