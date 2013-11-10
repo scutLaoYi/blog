@@ -222,10 +222,11 @@ class UsersController extends AppController {
 	public function isAuthorized($user)
 	{
 		
-		if(in_array($this->action, array('view')))
+		if(in_array($this->action, array('view','edit')))
 		{
 			return true;
 		}
+		
 		return parent::isAuthorized($user);
 	}
 }
