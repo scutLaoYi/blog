@@ -33,9 +33,9 @@
 		</dd>
 	</dl>
 	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('关注博主'),array('controller'=>'Follows','action' => 'add',$user['User']['id'],$user['User']['username'])); ?> </li>
-		</ul>
+		
+			<?php echo $this->Html->link(__('关注博主'),array('controller'=>'Follows','action' => 'add',$user['User']['id'],$user['User']['username'])); ?> 
+		
 	</div>
 	
 	<table cellpadding ="0" cellspacing="0">

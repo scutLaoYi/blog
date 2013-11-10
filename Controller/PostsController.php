@@ -14,7 +14,7 @@ class PostsController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
-	public $uses = array('Post', 'Commet','User');
+	public $uses = array('Post', 'Commet','User','Follow');
 
 /**
  * index method
@@ -23,7 +23,21 @@ class PostsController extends AppController {
  */
 	public function index() {
 		$this->Post->recursive = 1;
-		$this->set('posts',$this->Paginator->paginate('Post'));
+		$data = $this->Paginator->paginate('Post');
+		foreach($data as $da)
+		{
+			$user_id=$da['Post']['user_id'];
+			if($follow=$this->Follow->find('first',array('conditions'=>array('following_id'=>$user_id,'follower_id'=>$this->Auth->user('id')))))
+			{
+				$is_follow[$user_id]=$follow['Follow']['id'];
+			}
+			else
+			{
+				$is_follow[$user_id]='-1';
+			}
+		}
+		$this->set('posts',$data);
+		$this->set('is_follow',$is_follow);
 	}
 
 /*	public function list_all()
@@ -39,12 +53,22 @@ class PostsController extends AppController {
 		{
 			$user_id = $this->Auth->user('id');
 		}
+		if($this->Auth->user('id')==$user_id)
+			$flag=true;
+		else $flag=false;
+		$this->set('flag',$flag);	
+		if($follow=$this->Follow->find('first',array('conditions'=>array('follower_id'=>$this->Auth->user('id'),'following_id'=>$user_id))))
+		{
+			$is_follow=$follow['Follow']['id'];
+		}
+		else $is_follow='-1';
+		$this->set('is_follow',$is_follow);
 		$data = $this->Paginator->paginate('Post', array('Post.user_id' => $user_id));
 		$this->set('posts', $data);
 		$this->set('is_current_user', $this->Auth->user('role') === 'admin' || $this->Auth->user('id') == $user_id);
 		$this->set('posts_owner', $this->User->find('first',array(
 			'conditions'=>array('User.id'=>$user_id),
-			'filed'=>array('User.username'),
+			'filed'=>array('User.username','User.id'),
 		
 		)));
 	}
@@ -137,6 +161,7 @@ class PostsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
+	
 	public function isAuthorized($user)
 	{
 		if(in_array($this->action, array('add', 'user_posts')))

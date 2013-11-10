@@ -84,7 +84,7 @@ $cakeDescription = __d('cake_dev', 'ndsc blog');
 
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->fetch('content'); ?>:
+			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->link(

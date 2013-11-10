@@ -9,7 +9,14 @@
 	<tr>
 		<td><?php echo $this->Html->link(__($post['Post']['title']), array('action' => 'view', $post['Post']['id'])); ?>&nbsp;</td>
 		<td><?php echo $this->Html->link(__($post['User']['username']), array('action'=>'user_posts', $post['Post']['user_id'])); ?> &nbsp; </td>
-		</td>
+		<td><?php 
+		if($is_follow[$post['Post']['user_id']]=='-1')
+			echo $this->Html->link('关注',array('controller'=>'Follows','action'=>'add',$post['Post']['user_id'],$post['User']['username']));
+		else
+		{
+				echo $this->Html->link('取消关注',array('controller'=>'Follows','action'=>'delete',$is_follow[$post['Post']['user_id']]));
+		}	
+?>
 	</tr>
 <?php endforeach; ?>
 	</table>

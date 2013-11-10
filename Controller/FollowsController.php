@@ -13,6 +13,7 @@ class FollowsController extends AppController {
  *
  * @var array
  */
+	public $uses = array('User','Follow');
 	public $components = array('Paginator');
 
 /**
@@ -33,31 +34,52 @@ class FollowsController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->Follow->exists($id)) {
-			throw new NotFoundException(__('Invalid follow'));
+		$options=$this->Follow->find('all',array('conditions'=>array('follower_id'=>$id)));
+		$this->set('follow', $options);
+		if($id==$this->Auth->user('id'))
+		{
+			$this->set('flag',true);
 		}
-		$options = array('conditions' => array('Follow.' . $this->Follow->primaryKey => $id));
-		$this->set('follow', $this->Follow->find('first', $options));
+		else
+		{
+			$this->set('flag',false);
+		}
+		$username=$this->User->find('first',array('conditions'=>array('User.id'=>$id),'fileds'=>array('User.username')));
+		$this->set('username',$username['User']['username']);
 	}
 
-/**
+/*
  * add method
  *
  * @return void
  */
-	public function add($following_id = null,$following_name = null) {
-		if ($this->request->is('post')) {
+	public function add($following_id = null,$following_name = null) {		
 			$this->Follow->create();
 			$this->request->data['Follow']['following_id'] = $following_id;
 			$this->request->data['Follow']['follower_id'] = $this->Auth->user('id');
 			$this->request->data['Follow']['following_name'] = $following_name;
-			if ($this->Follow->save($this->request->data)) {
-				$this->Session->setFlash(__('The follow has been saved.'));
-				return $this->redirect(array('controller' => 'Users','action' => 'view',$following_id));
-			} else {
-				$this->Session->setFlash(__('The follow could not be saved. Please, try again.'));
+			if($this->Auth->user('id')==$following_id)
+			{
+				$this->Session->setFlash('不能关注自己');
+			
+				
 			}
-		}
+			else	if($judge = $this->Follow->find('first',array(
+			'conditions'=>array('follower_id'=>$this->Auth->user('id'),'following_id'=>$following_id)))
+			)
+			{
+				$this->Session->setFlash('你已经关注该用户，不能重复关注');
+			}else
+			{
+				if ($this->Follow->save($this->request->data)) {
+					$this->Session->setFlash(__('The follow has been saved.'));
+				
+				} else {
+					$this->Session->setFlash(__('The follow could not be saved. Please, try again.'));
+				}
+			}
+			return $this->redirect($this->referer());
+		
 	}
 
 /**
@@ -102,5 +124,14 @@ class FollowsController extends AppController {
 		} else {
 			$this->Session->setFlash(__('The follow could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('controller'=>'Users','action' => 'view',$this->Auth->user('id')));
-	}}
+			return $this->redirect($this->referer());
+	}
+	public function isAuthorized($user)
+	{
+		if(in_array($this->action,array('delete','edit','add')))
+		{
+			return true;
+		}
+		return parent::isAuthorized($user);
+	}
+}
