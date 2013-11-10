@@ -53,16 +53,7 @@ class PostsController extends AppController {
 		{
 			$user_id = $this->Auth->user('id');
 		}
-		if($this->Auth->user('id')==$user_id)
-			$flag=true;
-		else $flag=false;
-		$this->set('flag',$flag);	
-		if($follow=$this->Follow->find('first',array('conditions'=>array('follower_id'=>$this->Auth->user('id'),'following_id'=>$user_id))))
-		{
-			$is_follow=$follow['Follow']['id'];
-		}
-		else $is_follow='-1';
-		$this->set('is_follow',$is_follow);
+		
 		$data = $this->Paginator->paginate('Post', array('Post.user_id' => $user_id));
 		$this->set('posts', $data);
 		$this->set('is_current_user', $this->Auth->user('role') === 'admin' || $this->Auth->user('id') == $user_id);
@@ -164,7 +155,8 @@ class PostsController extends AppController {
 	
 	public function isAuthorized($user)
 	{
-		if(in_array($this->action, array('add', 'user_posts')))
+		
+		if(in_array($this->action, array('add', 'user_posts','view')))
 		{
 			return true;
 		}

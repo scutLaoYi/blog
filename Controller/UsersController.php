@@ -76,15 +76,67 @@ class UsersController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->User->exists($id)) {
-			throw new NotFoundException(__('Invalid user'));
+		//if (!$this->User->exists($id)) {
+		//	
+		//	throw new NotFoundException(__('Invalid user'));
+		//}
+		if($id==null)
+		$id=$this->Auth->user('id');
+		if($this->Auth->user('id')==$id)
+			$flag=true;
+		else $flag=false;
+		$this->set('flag',$flag);	
+		if($follows=$this->Follow->find('first',array('conditions'=>array('follower_id'=>$this->Auth->user('id'),'following_id'=>$id))))
+		{
+			$is_follow=$follows['Follow']['id'];
 		}
+		else $is_follow='-1';
+		$this->set('is_follow',$is_follow);
+		$options=$this->Follow->find('all',array('conditions'=>array('follower_id'=>$id)));
+		$this->set('follow', $options);
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-		$this->set('user', $this->User->find('first', $options));
+		
+
+		//changed by laoyi. get the current User, used in the following code.
+		$currentUser = $this->User->find('first', $options);
+		$this->set('user', $currentUser);
 
 		$optionsFollow = array('conditions' => array('Follow.follower_id' => $id));
 		$this->set('pa',$this->Paginator->paginate());
 		$this->set('follows', $this->Follow->find('all',$optionsFollow));
+
+		//----------------------------------------
+		//by laoyi: adding the function to save and display image.
+
+		if(!empty($currentUser['User']['image']))
+		{
+			$this->set('image', $currentUser['User']['image']);
+		}
+		if($this->request->is('post'))
+		{
+			if(!empty($this->request->data))
+			{
+				$file = $this->data['Head']['head_image'];
+
+				$ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+				$arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+
+				if(in_array($ext, $arr_ext))
+				{
+					move_uploaded_file($file['tmp_name'], WWW_ROOT.'head_image/'.$file['name']);
+					$currentUser['User']['image'] = $file['name'];
+				}
+			}
+			if($this->User->save($currentUser))
+			{
+				$this->Session->setFlash('头像上传成功！');
+				$this->redirect($this->referer());
+			}
+			else
+			{
+				$this->Session->setFlash('头像上传失败...');
+			}
+		}
 	}
 
 /**
@@ -166,5 +218,14 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
+	}
+	public function isAuthorized($user)
+	{
+		
+		if(in_array($this->action, array('view')))
+		{
+			return true;
+		}
+		return parent::isAuthorized($user);
 	}
 }

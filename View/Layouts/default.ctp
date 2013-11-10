@@ -48,9 +48,9 @@ $cakeDescription = __d('cake_dev', 'ndsc blog');
 			<li><?php echo $this->Html->link('主页', array('controller'=>'Posts', 'action'=>'index')); ?></li>
 			  <li><a href="">个人信息</a>
 				<ul>
-				<li><a href="">密码管理</a></li>
+				<li><?php echo $this->Html->link('个人信息管理',array('controller'=>'Users', 'action'=>'view')); ?></li>
 				<li><?php echo $this->Html->link('我的博客',array('controller'=>'Posts', 'action'=>'user_posts')); ?></li>
-				<li><a href="">关注列表</a></li>
+				
 				</ul>
 			  </li>
 			  <li><a href="">关于博客</a>

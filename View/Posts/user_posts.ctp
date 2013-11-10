@@ -1,20 +1,8 @@
 <div class="posts index">
 	<h2><?php echo __($posts_owner['User']['username'].'的博客'); ?></h2>
+	&nbsp;&nbsp;
 	<?php
-	if($is_follow=='-1')
-	{
-	echo $this->Html->link('关注',array('controller'=>'Follows','action'=>'add',$posts_owner['User']['id'],$posts_owner['User']['username']));
-	}
-	else
-	{
-	echo $this->Html->link('取消关注',array('controller'=>'Follows','action'=>'delete',$is_follow));
-	}
-	?>&nbsp;&nbsp;&nbsp;
-	<?php
-	if(!$flag)
-		echo $this->Html->link('他的关注列表',array('controller'=>'Follows','action'=>'view',$posts_owner['User']['id']));
-	else
-		echo $this->Html->link('我的关注列表',array('controller'=>'Follows','action'=>'view',$posts_owner['User']['id']));
+		echo $this->Html->link('个人信息',array('controller'=>'Users','action'=>'view',$posts_owner['User']['id']));
 	?>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
