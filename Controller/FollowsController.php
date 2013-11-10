@@ -33,20 +33,6 @@ class FollowsController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
-		$options=$this->Follow->find('all',array('conditions'=>array('follower_id'=>$id)));
-		$this->set('follow', $options);
-		if($id==$this->Auth->user('id'))
-		{
-			$this->set('flag',true);
-		}
-		else
-		{
-			$this->set('flag',false);
-		}
-		$username=$this->User->find('first',array('conditions'=>array('User.id'=>$id),'fileds'=>array('User.username')));
-		$this->set('username',$username['User']['username']);
-	}
 
 /*
  * add method
