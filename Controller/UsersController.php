@@ -116,15 +116,34 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+			$oldPassword = $this->User->find('first',array('conditions' => array('User.id' => $id)));
+			if(AuthComponent::password($this->request->data['User']['old password']) == $oldPassword['User']['password'])
+			{
+				if($this->request->data['User']['new password'] == $this->request->data['User']['confirm new password'])
+				{
+					$newData['id'] = $this->Auth->user('id');
+					$newData['username'] = $this->Auth->user('username');
+					$newData['password'] = $this->request->data['User']['new password'];
+					$newData['role'] = $this->Auth->user('role');
+					if ($this->User->save($newData)) {
+						$this->Session->setFlash(__('The user has been saved.'));
+						return $this->redirect(array('controller'=>'Users','action' => 'view',$id));
+					} else {
+						$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+					}
+				}
+				else
+				{
+					$this->Session->setFlash(__('please confirm your new password again.'));
+	                                $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+			                $this->request->data = $this->User->find('first', $options);
+
+				}
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('You old password is wrong,please try again.'));
+				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+				$this->request->data = $this->User->find('first', $options);
 			}
-		} else {
-			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			$this->request->data = $this->User->find('first', $options);
 		}
 	}
 
@@ -147,4 +166,5 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('The user could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}
