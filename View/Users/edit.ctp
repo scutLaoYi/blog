@@ -8,5 +8,6 @@
 		echo $this->Form->input('new password');
 		echo $this->Form->input('confirm new password');
 	?>
+	<?php echo $this->Form->end(__('Submit')); ?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+</div>

@@ -23,6 +23,7 @@ class PostsController extends AppController {
  */
 	public function index() {
 		$this->Post->recursive = 1;
+		$this->Paginator->settings = array('limit' => '6');
 		$data = $this->Paginator->paginate('Post');
 		foreach($data as $da)
 		{

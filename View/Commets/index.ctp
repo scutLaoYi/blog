@@ -1,4 +1,4 @@
-<div class="commets index">
+<div class="item_list">
 	<h2><?php echo __('Commets'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
@@ -38,9 +38,4 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Commet'), array('action' => 'add')); ?></li>
-	</ul>
-</div>
+

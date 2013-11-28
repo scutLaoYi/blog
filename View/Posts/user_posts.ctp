@@ -1,9 +1,16 @@
-<div class="posts index">
+<div class="action_list">
+	<h3><?php echo __('操作'); ?></h3>
+	<ul>
+		<li class="action"><div class="button"><?php echo $this->Html->link(__('返回博客列表'), array('action' => 'index')); ?> </div></li>
+		<li class="action"><div class="button"><?php echo $this->Html->link(__('写博客'), array('action' => 'add')); ?></div></li>
+	</ul>	
+</div>
+<div class="info">
 	<h2><?php echo __($posts_owner['User']['username'].'的博客'); ?></h2>
 	&nbsp;&nbsp;
-	<?php
+	<div class="button"><?php
 		echo $this->Html->link('个人信息',array('controller'=>'Users','action'=>'view',$posts_owner['User']['id']));
-	?>
+	?></div>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -48,10 +55,4 @@
 	?>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('操作'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('返回博客列表'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('写博客'), array('action' => 'add')); ?></li>
-	</ul>	
-</div>
+
