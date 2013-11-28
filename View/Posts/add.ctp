@@ -7,7 +7,7 @@
 </div>
 <div class="posts form">
 <?php echo $this->Form->create('Post'); ?>
-	<fieldset>
+	<fieldset class="post">
 		<legend><?php echo __('写新的博客'); ?></legend>
 	<?php
 		echo $this->Form->input('title', array('label' => '标题'));
