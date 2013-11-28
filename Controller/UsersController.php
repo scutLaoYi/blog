@@ -2,10 +2,13 @@
 App::uses('AppController', 'Controller');
 /**
  * Users Controller
- 
- *
- * @property User $User
- * @property PaginatorComponent $Paginator
+ * ---------------------------------------
+ * 用户管理模块
+ * 该模块提供了对博客平台用户的所有管理操作
+ * 其他所有模块依赖于该模块的用户权限
+ * 通过该模块可以完成新用户的注册、登录、登出等操作
+ * 用户登录后在权限管理器Auth(内置模块)中写入信息，在其他页面的控制器中直接调用并获取当前用户的登录信息
+ * 
  */
 class UsersController extends AppController {
 
@@ -24,17 +27,14 @@ class UsersController extends AppController {
 	public $components = array('Paginator');
 	public $uses = array('User','Follow');
 
-/**
- * index method
- *
- * @return void
- */
-	public function beforeFilter()
-	{
-		parent::beforeFilter();
-		$this->Auth->allow('add');
-	}
 
+	/*
+	 * 登录函数
+	 * 检测当前是否已经登录，是则直接跳转到主页
+	 * 调用验证器检测用户的登录信息(username, password)是否正确
+	 * 如果登录成功，在cookie中写入当前用户的username供页面显示使用（只供显示，不提供验证功能）
+	 * 给出登录信息并作相应跳转处理
+	 */
 	public function login()
 	{
 		if($this->request->is('post'))
@@ -46,7 +46,6 @@ class UsersController extends AppController {
 			}
 			if($this->Auth->login())
 			{
-				//return $this->redirect($this->Auth->redirect());
 				$this->Session->write('user',$this->data['User']['username']);
 				return $this->redirect(array('controller' => 'Posts','action' => 'index'));
 			}
@@ -54,14 +53,25 @@ class UsersController extends AppController {
 		}
 	}
 
+	/*
+	 * 登出函数
+	 * 删除对应的cookie
+	 * 调用验证器完成登出操作
+	 * 跳转到主页面
+	 */
 	public function logout()
 	{
 		$this->Session->delete('user');
 		$this->Auth->logout();
 		return $this->redirect(array('controller' => 'Posts','action' => 'index'));
-	//	return $this->redirect($this->Auth->logout());
 	}
 
+	/**
+	 * index method
+	 *
+	 * 管理员使用的用户列表页面
+	 * 显示所有用户的列表
+	 */
 	public function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
@@ -70,33 +80,33 @@ class UsersController extends AppController {
 
 /**
  * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
+ * 用户信息显示页面
+ * 显示某个用户的基本信息
  */
 	public function view($id = null) {
-		//if (!$this->User->exists($id)) {
-		//	
-		//	throw new NotFoundException(__('Invalid user'));
-		//}
+		//若传入的id为空，则直接读取当前用户的id
 		if($id==null)
-		$id=$this->Auth->user('id');
+			$id=$this->Auth->user('id');
+		//若是当前用户，则提供编辑接口
 		if($this->Auth->user('id')==$id)
 			$flag=true;
-		else $flag=false;
+		else
+		   	$flag=false;
+
 		$this->set('flag',$flag);	
+		//检测当前登录用户是否有关注该显示用户
 		if($follows=$this->Follow->find('first',array('conditions'=>array('follower_id'=>$this->Auth->user('id'),'following_id'=>$id))))
 		{
 			$is_follow=$follows['Follow']['id'];
 		}
 		else $is_follow='-1';
 		$this->set('is_follow',$is_follow);
+		
+		//获取当前用户的关注列表
 		$options=$this->Follow->find('all',array('conditions'=>array('follower_id'=>$id)));
 		$this->set('follow', $options);
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		
-
 		//changed by laoyi. get the current User, used in the following code.
 		$currentUser = $this->User->find('first', $options);
 		$this->set('user', $currentUser);
@@ -112,6 +122,8 @@ class UsersController extends AppController {
 		{
 			$this->set('image', $currentUser['User']['image']);
 		}
+		//
+		//用户提交头像的处理
 		if($this->request->is('post'))
 		{
 			if(!empty($this->request->data))
@@ -142,14 +154,17 @@ class UsersController extends AppController {
 /**
  * add method
  *
- * @return void
+ * 用户注册函数
+ * 获取用户输入的表单，调用模型层验证用户输入数据
+ * 写入数据库
+ * 做相应跳转处理
  */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('controller'=>'Posts', 'action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -158,21 +173,26 @@ class UsersController extends AppController {
 
 /**
  * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
+ * 修改密码的函数
+ * 提交用户的表单进行验证
+ * 检测是否输入了正确的原始密码
+ * 检测是否输入两次相同的新密码
+ * 存入数据
  */
 	public function edit($id = null) {
 		if (!$this->User->exists($id)) {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is(array('post', 'put'))) {
+			//获取数据库中的原始密码
 			$oldPassword = $this->User->find('first',array('conditions' => array('User.id' => $id)));
+			//若数据的原始密码正确则进行密码修改操作
 			if(AuthComponent::password($this->request->data['User']['old password']) == $oldPassword['User']['password'])
 			{
+				//检测是否输入两次密码相同
 				if($this->request->data['User']['new password'] == $this->request->data['User']['confirm new password'])
 				{
+					//写入新数据
 					$newData['id'] = $this->Auth->user('id');
 					$newData['username'] = $this->Auth->user('username');
 					$newData['password'] = $this->request->data['User']['new password'];
@@ -186,11 +206,13 @@ class UsersController extends AppController {
 				}
 				else
 				{
+					//输入两次新密码不同，不予修改
 					$this->Session->setFlash(__('please confirm your new password again.'));
-	                                $options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
-			                $this->request->data = $this->User->find('first', $options);
+					$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
+					$this->request->data = $this->User->find('first', $options);
 
 				}
+			//用户输入的原始密码错误，不予修改
 			} else {
 				$this->Session->setFlash(__('You old password is wrong,please try again.'));
 				$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
@@ -201,10 +223,11 @@ class UsersController extends AppController {
 
 /**
  * delete method
+ * 删除用户的操作
+ * 管理员使用
+ * 提交对应用户的id，执行删除操作
+ * 调用SQL语句删除数据库中的对应表项
  *
- * @throws NotFoundException
- * @param string $id
- * @return void
  */
 	public function delete($id = null) {
 		$this->User->id = $id;
@@ -219,6 +242,11 @@ class UsersController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+
+	/*
+	 * 用户权限管理
+	 * 允许登录用户管理自己的信息
+	 */
 	public function isAuthorized($user)
 	{
 		
@@ -228,5 +256,15 @@ class UsersController extends AppController {
 		}
 		
 		return parent::isAuthorized($user);
+	}
+
+	/*
+	 * beforeFilter
+	 * 允许未登录用户访问add页面注册新用户
+	 */
+	public function beforeFilter()
+	{
+		$this->Auth->allow('add');
+		parent::beforeFilter();
 	}
 }

@@ -2,9 +2,13 @@
 App::uses('AppController', 'Controller');
 /**
  * Posts Controller
- *
- * @property Post $Post
- * @property PaginatorComponent $Paginator
+ * ----------------------------------------------
+ * 博文模块
+ * 该模块提供了基本的博文增删改功能
+ * 所有访问网站的用户均可浏览博客内容
+ * 已登录用户具有权限编写新的博文
+ * 已登录用户具有权限管理自己的博文（删除、修改等）
+ * 管理员具有所有权限
  */
 class PostsController extends AppController {
 
@@ -18,8 +22,8 @@ class PostsController extends AppController {
 
 /**
  * index method
- *
- * @return void
+ * 博文主页，按时间显示所有的博文列表
+ * 
  */
 	public function index() {
 		$this->Post->recursive = 1;
@@ -41,13 +45,13 @@ class PostsController extends AppController {
 		$this->set('is_follow',$is_follow);
 	}
 
-/*	public function list_all()
-	{
-		$this->Post->recursive = 0;
-		$this->set('posts', $this->Paginator->paginate());
-	}
- */
-
+	/*
+	 * user_posts函数
+	 * 显示对应user_id的所有博文列表
+	 * 检测对应的user_id是否存在，查找数据库并将该用户的所有博文数据列表显示
+	 * 检测当前用户是否有权限管理（当前用户id与显示的user_id相同，或者当前用户为管理员)
+	 * 为有权限编辑的用户提供编辑接口("is_current_user"属性设置为true)
+	 */
 	public function user_posts($user_id = null)
 	{
 		if(!$user_id)
@@ -68,9 +72,10 @@ class PostsController extends AppController {
 /**
  * view method
  *
- * @throws NotFoundException
- * @param string $id
- * @return void
+ * 博文显示页面
+ * 获取博文id，构造SQL语句查询数据库，得到博文内容
+ * 根据博文id，构造SQL语句查询评论列表，并得到对应该博文的评论内容
+ * 
  */
 	public function view($id = null) {
 		if (!$this->Post->exists($id)) {
@@ -91,8 +96,8 @@ class PostsController extends AppController {
 
 /**
  * add method
- *
- * @return void
+ * 博文增加页面
+ * 将用户id写入博文数据记录中，并写入数据库
  */
 	public function add() {
 		if ($this->request->is('post')) {
@@ -110,10 +115,11 @@ class PostsController extends AppController {
 
 /**
  * edit method
+ * 博文编辑页面
+ * 检测博文是否存在
+ * 检测用户是否有权限管理该博文
+ * 接收用户Post过来的请求并对相应博文内容进行更新
  *
- * @throws NotFoundException
- * @param string $id
- * @return void
  */
 	public function edit($id = null) {
 		if (!$this->Post->exists($id)) {
@@ -134,10 +140,10 @@ class PostsController extends AppController {
 
 /**
  * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
+ * 删除博客内容
+ * 检验博客是否存在
+ * 检验用户是否有权限管理该博客（拥有者或管理员）
+ * 删除后跳转回博客首页
  */
 	public function delete($id = null) {
 		$this->Post->id = $id;
@@ -152,8 +158,25 @@ class PostsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-
 	
+	/*
+	 * beforeFilter函数
+	 * 权限管理，在beforeFilter函数中授权的页面不用登录即可访问
+	 * 未登录用户可以浏览博客，但不允许其他任何操作
+	 */
+	public function beforeFilter()
+	{
+		$this->Auth->allow('index', 'view');
+		return parent::beforeFilter();
+	}
+
+
+	/*
+	 * isAuthorized函数
+	 * 权限管理，在该函数中可以启用基于RBAC的角色访问控制
+	 * 登录用户可以新增博文，显示用户所有博文
+	 * 用户可以进入自己的博文管理页面，增删改
+	 */
 	public function isAuthorized($user)
 	{
 		

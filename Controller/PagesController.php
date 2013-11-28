@@ -28,6 +28,10 @@ App::uses('AppController', 'Controller');
  *
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
+ * ------------------------------------------------------------------
+ * Page模块
+ * 提供基本的翻页功能
+ * 由Cakephp框架提供，未修改
  */
 class PagesController extends AppController {
 

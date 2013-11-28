@@ -3,8 +3,11 @@ App::uses('AppController', 'Controller');
 /**
  * Commets Controller
  *
- * @property Commet $Commet
- * @property PaginatorComponent $Paginator
+ * 评论模块
+ * 该模块提供了对博文的评论功能
+ * 已登录用户拥有权限针对某个博文内容编写评论
+ * 评论写入数据库后，在对应博文的显示页面中可连带显示对该博文的评论列表
+ * 管理员有权限编辑和删除所有存在的评论
  */
 class CommetsController extends AppController {
 
@@ -17,8 +20,8 @@ class CommetsController extends AppController {
 
 /**
  * index method
- *
- * @return void
+ * 所有评论的列表显示页面
+ * 用于后台管理员查找管理评论
  */
 	public function index() {
 		$this->Commet->recursive = 0;
@@ -27,10 +30,10 @@ class CommetsController extends AppController {
 
 /**
  * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
+ * 显示某条评论
+ * 管理员使用的管理页面
+ * 前台显示则将评论与对应的博文联系并做列表显示
+ * 没有特定评论的单一显示页面
  */
 	public function view($id = null) {
 		if (!$this->Commet->exists($id)) {
@@ -42,8 +45,9 @@ class CommetsController extends AppController {
 
 /**
  * add method
- *
- * @return void
+ * 评论添加页面
+ * 获取当前用户的id，获取参数post_id确定针对的博文id
+ * 写入数据库并做对应的跳转处理
  */
 	public function add($post_id) {
 		if ($this->request->is('post')) {
@@ -62,10 +66,9 @@ class CommetsController extends AppController {
 
 /**
  * edit method
+ * 编辑评论页面
+ * 管理员使用的后台管理页面
  *
- * @throws NotFoundException
- * @param string $id
- * @return void
  */
 	public function edit($id = null) {
 		if (!$this->Commet->exists($id)) {
@@ -86,10 +89,8 @@ class CommetsController extends AppController {
 
 /**
  * delete method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
+ * 删除某条评论
+ * 管理员使用的后台管理页面
  */
 	public function delete($id = null) {
 		$this->Commet->id = $id;
@@ -105,7 +106,10 @@ class CommetsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
 
-	//Authorize function : only login user can post a comment.
+	/*
+	 * 用户权限管理
+	 * 只有登录用户允许发送新的评论
+	 */
 	public function isAuthorized($user)
 	{
 		if(in_array($this->action, array('add')))

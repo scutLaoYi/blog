@@ -30,6 +30,11 @@ App::uses('Controller', 'Controller');
  *
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * --------------------------------------------------------------------------------
+ * AppController
+ * 所有Controller的基类
+ * 在此类中定义了所有Controller所需要的通用模块（Auth用户认证模块）
+ * 并授权管理员对所有页面具有完全的访问权限
  */
 class AppController extends Controller {
 	public $components = array(
