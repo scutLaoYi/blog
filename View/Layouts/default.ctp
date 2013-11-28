@@ -62,7 +62,7 @@ $cakeDescription = __d('cake_dev', 'ndsc blog');
 			  <li><span>关于博客</span>
 				<div class="ldd_submenu">
 					<ul>
-						<li><a>关于我们</a></li>
+					<li><?php echo $this->Html->link('关于我们', array('controller'=>'Posts', 'action'=>'aboutUs')); ?></li>
 						<li><a>致谢</a></li>
 					</ul>
 				</div>

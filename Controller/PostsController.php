@@ -166,7 +166,7 @@ class PostsController extends AppController {
 	 */
 	public function beforeFilter()
 	{
-		$this->Auth->allow('index', 'view');
+		$this->Auth->allow('index', 'view', 'aboutUs');
 		return parent::beforeFilter();
 	}
 
@@ -195,6 +195,16 @@ class PostsController extends AppController {
 		}
 
 		return parent::isAuthorized($user);
+	}
+
+	/*
+	 * 无聊函数
+	 * 关于我们
+	 * 吹一下水。
+	 */
+	public function aboutUs()
+	{
+		return ;
 	}
 }
 
